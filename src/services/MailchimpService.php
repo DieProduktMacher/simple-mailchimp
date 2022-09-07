@@ -52,7 +52,7 @@ class MailchimpService extends Component
 
             $MailChimp = new MC(App::parseEnv($settings['mcApiKey'] ?: ''));
 
-            $result = $MailChimp->post("lists/" . App::parseEnv($settings['mcListID'] ?: '') . "/members", $dataMC);
+            $result = $MailChimp->post("lists/" . $data['mcListID'] ?: App::parseEnv($settings['mcListID'] ?: '') . "/members", $dataMC);
 
             if ($result['status'] == 'subscribed') {
                 return ['success' => true, 'msg' => 'Email subscribed successfully', 'id' => $result['contact_id']];
